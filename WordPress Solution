@@ -1,8 +1,25 @@
-# WordPress
 WordPress Solution
 ===================
 
-If you WordPress website got hacked or compromised you can use the below step one by one to clean your wordpress website.
+***** For Wordpress redirection from http to https you can add below code under .htaccess file *****
+
+Redirection Code:-
+------------+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+------------+
+OR
+------------+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+</IfModule>
+------------+
+
+
+***** If you WordPress website got hacked or compromised you can use the below step one by one to clean your wordpress website. *****
 
 compromised site:-
 ------------------
@@ -23,19 +40,15 @@ rm -fr wordpress latest.tar.gz
 cd public_html;find -type f -exec chmod 644 {} \;
 
 
-For Wordpress redirection from http to https you can add below code under .htaccess file:-
+***** Default wordpress code in .htaccess:- *****
 
-Redirection Code:-
-------------------
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-OR
-
+# BEGIN WordPress
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTPS} off
-    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
 </IfModule>
-
+# END WordPress
