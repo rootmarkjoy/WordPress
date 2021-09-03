@@ -1,0 +1,23 @@
+The issue is almost certainly related to one of two things:
+
+1) You don't have permissions (are you logged in as admin?)
+
+OR
+
+2) The theme (or a plugin) has disabled the plugins menu.
+
+After you've checked to be sure that you are an administrator, then you should attempt to view this page:
+
+http://www.yourdomain.com/wp-admin/plugins.php (replacing www.yourdomain.com with your site's domain name).
+
+If it's accessible, then it's time to start exploring the theme (which theme are you using?) and possibly some of the plugins that might have disabled the menu item.
+
+FYI, the method to remove dashboard menu items add below code into your “wp-config.php” file:
+
+define('DISALLOW_FILE_MODS',true);            ------>   (Make sure both rules should be false not true)
+define('DISALLOW_FILE_EDIT',true);
+
+If above code is used then replace with below code,
+
+define('DISALLOW_FILE_MODS',false);
+define('DISALLOW_FILE_EDIT',false);
